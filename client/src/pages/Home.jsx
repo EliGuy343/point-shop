@@ -1,8 +1,11 @@
+import Announcement from "../Components/Announcement";
+import Navbar from "../Components/Navbar";
 
 const Home = () => {
   return (
     <div>
-      HomePage
+      <Announcement/>
+      <Navbar/>
     </div>
   )
 }
