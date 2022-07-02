@@ -100,11 +100,17 @@ const Description = styled.p`
 `;
 const Button = styled.button`
   padding: 10px;
-  font-size:20px;
+  font-size:25px;
   background-color: white;
   border: none;
   border-radius:10px;
   box-shadow: 0 2px 2px -2px rgba(0,0,0,0.6); 
   cursor: pointer;
+  &:hover {
+    background-color: #ebe9e6;
+  }
+  &:active {
+    background-color: #b5b5b5;
+  }
 `;
 export default Slider;
