@@ -53,7 +53,7 @@ const Navbar = () => {
 }
 
 const Container = styled.div`
-  height:50px;
+  height: 50px;
   background-color: #0394fc;
   box-shadow: 0 2px 2px -2px rgba(0,0,0,0.6);  
 `;
@@ -64,8 +64,8 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 const Left = styled.div`
-  display:flex;
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
   flex: 1;
 `;
 const Language = styled.span`
@@ -77,17 +77,17 @@ const SearchContainer = styled.div`
   height: 22px;
   width: 200px;
   display: flex;
-  align-items:center;
-  margin-left:20px;
-  background-color:white;
+  align-items: center;
+  margin-left: 20px;
+  background-color: white;
   border-radius: 2px;
   box-shadow: 0 2px 2px -2px rgba(0,0,0,0.8);
 `;
 const Input = styled.input`
-  border:none;
+  border: none;
   border-radius: 5px;
-  font-size:14px;
-  width:180px;
+  font-size: 14px;
+  width: 180px;
   &:focus,
   &:active {
     outline: none;
@@ -95,26 +95,26 @@ const Input = styled.input`
 `;
 const Center = styled.div`
   flex: 1;
-  text-align:center;
-  margin-left:200px;
+  text-align: center;
+  margin-left: 200px;
 `;
 const Logo = styled.h3`
-  display:flex;
-  align-items:center;
-  font-weight:bold;
-  margin-left:25px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-left: 25px;
 `;
 const Right = styled.div`
   flex: 1;
-  display:flex;
-  flex-direction:row;
-  align-items:center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: flex-end;
 `;
 const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
-  margin-left:25px;
+  margin-left: 25px;
 
 `
 

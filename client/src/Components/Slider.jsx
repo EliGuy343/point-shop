@@ -52,8 +52,8 @@ const Arrow = styled.div`
   background-color:#d6d6d6;
   opacity: 0.55;
   cursor: pointer;
-  border-radius:50%;
-  display:flex;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -75,18 +75,18 @@ const Slide = styled.div`
   height: 100vh;
   display:flex;
   align-items: center;
-  background-color:#${props=>props.bg};
+  background-color: #${props=>props.bg};
 `;
 const ImageContainer = styled.div`
   height: 100%;
-  width:30%;
-  flex:1;
+  width: 30%;
+  flex: 1;
 `;
 const Image = styled.img`
   flex: 1;
 `;
 const InfoContainer = styled.div`
-  flex:1;
+  flex: 1;
   padding: 50px;
 `;
 const Title = styled.h1`
@@ -94,16 +94,16 @@ const Title = styled.h1`
 `;
 const Description = styled.p`
   font-size: 25px;
-  margin:50px 0px;
-  font-weight:500;
+  margin: 50px 0px;
+  font-weight: 500;
   letter-spacing:3px;
 `;
 const Button = styled.button`
   padding: 10px;
-  font-size:25px;
+  font-size: 25px;
   background-color: white;
   border: none;
-  border-radius:10px;
+  border-radius: 10px;
   box-shadow: 0 2px 2px -2px rgba(0,0,0,0.6); 
   cursor: pointer;
   &:hover {
