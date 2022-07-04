@@ -67,3 +67,6 @@ export const popularProducts = [
     img:"https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
   },
 ]
+
+export const registerBackground = `https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`;
+export const loginBackground = `https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`;
