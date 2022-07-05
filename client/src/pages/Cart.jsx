@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Announcement from '../Components/Announcement';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
+import { mobile } from '../responsive';
 
 const Cart = () => {
   return (
@@ -108,15 +109,17 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   padding: 20px;
+  ${mobile({padding: '10px'})}
 `;
 const Title = styled.h1`
   font-weight: 300;
+  width:101%;
   text-align: center;
 `;
 const Top = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  ${mobile({width:'90%'})}
   padding: 20px;
 `;
 const CheckoutButton = styled.button`
@@ -127,6 +130,7 @@ const CheckoutButton = styled.button`
   color: white;
   border-radius: 5px;
   box-shadow: 0 3px 3px -2px rgba(0,0,0,0.6);
+  ${mobile({marginLeft:'25px'})}
   cursor:pointer;
   &:active {
     box-shadow: 0 1px 1px -2px rgba(0,0,0,0.6);
@@ -149,7 +153,7 @@ const TopButton = styled.button`
   }
 `;
 const TopTexts = styled.div`
-
+   ${mobile({display: 'none'})}
 `;
 const TopText = styled.span`
   text-decoration: underline;
@@ -159,6 +163,7 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({flexDirection:'column'})}
 `;
 const Info = styled.div`
   flex: 3;
@@ -166,6 +171,7 @@ const Info = styled.div`
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({flexDirection:'column'})}
 `;
 const PrdouctDetail = styled.div`
   flex:2;

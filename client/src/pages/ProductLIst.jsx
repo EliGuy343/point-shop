@@ -4,6 +4,7 @@ import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
 import Newsletter from '../Components/Newsletter';
 import Products from '../Components/Products';
+import { mobile } from '../responsive';
 
 const Container = styled.div`
 
@@ -21,6 +22,8 @@ const Filter = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  text-align:center;
+  ${mobile({width:'0px 20px', flexDirection:'column'})}
 `;
 const FliterText = styled.div`
   font-size: 20px;

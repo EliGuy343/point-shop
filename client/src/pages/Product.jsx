@@ -4,6 +4,7 @@ import Announcement from '../Components/Announcement';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
 import Newsletter from '../Components/Newsletter';
+import { mobile } from '../responsive';
 
 const Product = () => {
   return (
@@ -64,6 +65,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
+  ${mobile({ flexDirection:'column', padding:'10px'})}
 `;
 const ImgContainer = styled.div`
   flex: 1;
@@ -72,10 +74,12 @@ const Image = styled.img`
   width: 100%;
   height: 90vh;
   object-fit: cover;
+  ${mobile({height:'40vh'})}
 `;
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
+  ${mobile({width:'85%', padding:'10px'})}
 `;
 const Title = styled.h1`
   font-weight: 200;
@@ -92,15 +96,16 @@ const FilterContainer = styled.div`
   justify-content: space-between;
   width: 50%;
   margin: 30px;
+  ${mobile({width:'100%', margin:'20px 0px'})}
 `;
 const Filter = styled.div`
   display: flex;
-  align-content: center;
-
+  align-items: center;
 `;
 const FilterTitle = styled.span`
   font-size: 20px;
   font-weight: 200;
+  margin-right: 5px;
 `;
 const FilterColor = styled.div` 
   width: 20px;
@@ -118,10 +123,11 @@ const FilterSizeOption = styled.option`
 
 `;
 const AddContainer = styled.div`
-  width: 50%;
+  width: 100%;
   display: flex;
   align-content: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  ${mobile({width:'100%', margin:'20px 0px'})}
 `;
 const AmountContainer = styled.div`
   display: flex;
@@ -144,8 +150,10 @@ const Button = styled.button`
   border: 1px solid #0394fc;
   background-color: white;
   cursor: pointer;
+  margin-left: 133px;
   font-weight: 500;
   box-shadow: 0 2px 2px -2px rgba(0,0,0,0.6);
+  ${mobile({width:'100%', margin:'20px 0px'})}
 
   &:hover {
     background-color: gray;

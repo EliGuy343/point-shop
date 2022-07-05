@@ -3,6 +3,7 @@ import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { sliderItems } from '../data';
+import { mobile } from '../responsive';
 const Slider = () =>{
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
@@ -45,6 +46,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
+  ${mobile({display: 'none'})}
 `;
 const Arrow = styled.div`
   width: 50px;
