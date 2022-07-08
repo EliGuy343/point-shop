@@ -4,7 +4,7 @@ const {
   getUser,
   getAllUsers,
   getUserStats
-} = require('../Controller/user.controller');
+} = require('../controller/user.controller');
 const { 
   verifyToken,
   verifyTokenAndAutorization,
