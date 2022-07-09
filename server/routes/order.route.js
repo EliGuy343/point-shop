@@ -3,7 +3,8 @@ const {
   editOrder, 
   deleteOrder,
   getOrder,
-  getAllOrders
+  getAllOrders,
+  getMonthlyIncome
 } = require('../controller/order.controller');
 const { 
   verifyToken,
@@ -13,9 +14,10 @@ const {
 
 const router = require('express').Router();
 
-router.post('/:id', verifyToken, createOrder);
+router.post('/', verifyToken, createOrder);
 router.put('/:id', verifyTokenAndAdmin, editOrder);
 router.delete('/:id', verifyTokenAndAdmin, deleteOrder);
 router.get('/find/:id', verifyTokenAndAutorization, getOrder);
 router.get('/', verifyTokenAndAdmin, getAllOrders);
+router.get('/stats', verifyTokenAndAdmin, getMonthlyIncome);
 module.exports = router;
