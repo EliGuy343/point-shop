@@ -6,6 +6,8 @@ const authRoute = require('./routes/auth.route');
 const productRoute = require('./routes/product.route');
 const cartRoute = require('./routes/cart.route');
 const orderRoute = require('./routes/order.route');
+const paymentRoute = require('./routes/stripe.route');
+const cors = require('cors');
 require('dotenv').config();
 
 PORT = process.env.PORT || 8000
@@ -14,12 +16,14 @@ mongoose
   .then(() =>console.log('Sever Successfully connected to database'))
   .catch(err=>console.log(err)); 
 
+app.use(cors());
 app.use(express.json());
 app.use('/api/auth',authRoute);
 app.use('/api/users', userRoute);
 app.use('/api/products', productRoute);
 app.use('/api/cart', cartRoute);
 app.use('/api/orders', orderRoute);
+app.use('/api/payment',paymentRoute);
 
 app.listen(PORT, () => {
   console.log(`backend is running on server ${PORT}`);
