@@ -7,7 +7,9 @@ import Newsletter from '../Components/Newsletter';
 import { mobile } from '../responsive';
 import { useParams } from 'react-router-dom';
 import { useState,useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import { addProduct } from '../redux/cartRedux';
 
 const Product = () => {
   const {id} = useParams();
@@ -15,6 +17,10 @@ const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState('');
   const [size, setSize] = useState('')
+  const dispatch = useDispatch();
+  const handleAddProduct = () =>{
+    dispatch(addProduct({...product, quantity, color, size})); 
+  }
   const handleAmount = (inp) => {
     if(inp === 'dec' && quantity > 1)
     {
@@ -85,7 +91,7 @@ const Product = () => {
               <Amount>{quantity}</Amount>
               <Add onClick={()=>handleAmount('inc')}/>
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button onClick={()=>handleAddProduct()}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>}

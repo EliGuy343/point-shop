@@ -3,8 +3,10 @@ import {Search, ShoppingCartCheckoutOutlined} from '@mui/icons-material';
 import FlareIcon from '@mui/icons-material/Flare';
 import { Badge } from '@mui/material';
 import { mobile } from '../responsive';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+  const quantity = useSelector(state=>state.cart.quantity);
   return (
     <Container>
       <Wrapper>
@@ -36,7 +38,7 @@ const Navbar = () => {
           <MenuItem>LOGIN</MenuItem>
           <MenuItem>
           <Badge 
-            badgeContent={4}  
+            badgeContent={quantity}  
             sx={{
               "& .MuiBadge-badge": {
               color: "white",
