@@ -17,7 +17,6 @@ function App() {
         <Routes>
           <Route path="/products" element={<ProductList/>}/>
           <Route path="/products/:category" element={<ProductList/>}/>
-          <Route path='/product' element={<Product/>}/>
           <Route path='/product/:id' element={<Product/>}/>
           <Route exact path='/cart' element={<Cart/>}/>
           <Route exact path='/register' element={<Register/>}/>

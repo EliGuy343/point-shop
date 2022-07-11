@@ -12,10 +12,10 @@ const Products = ({category, filters, sort}) => {
         let res;
         if(category) {
           res = await axios.get(
-            `http://localhost:8000/api/products?category=${category}`);
+            `/api/products?category=${category}`);
         }
         else {
-          res = await axios.get('http://localhost:8000/api/products');
+          res = await axios.get('/api/products');
         }
         setProducts(res.data);
       } 
