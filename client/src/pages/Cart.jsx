@@ -1,15 +1,37 @@
-import { Add, Remove } from '@mui/icons-material';
+import { Add, Remove} from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Announcement from '../Components/Announcement';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
 import { mobile } from '../responsive';
+import StripeCheckout from 'react-stripe-checkout';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+const KEY = "pk_test_51LJSzHEBK4WzIPujyfk92nossR8Kvkf4CeZvyb9lD5WTnBrCGLhJqumQpRvONVUx0kXqJv9ZMyDz6THQKSW9kAuU00abCtUyBG";
 
 const Cart = () => {
   const cart = useSelector(state=>state.cart);
-  let shippingPrice = 5.99;
-  let shippingDiscount = 3.99; 
+  const navigate = useNavigate();
+  let shippingPrice = 5.20;
+  let shippingDiscount = 3.20;
+  const [stripeToken, setStripeToken] = useState(null); 
+  const onToken = (token) => {
+    setStripeToken(token);
+  }
+
+  useEffect(()=>{
+    const makeRequest = async ()=>{
+        navigate('../success', {replace: true});
+      }
+    if(stripeToken) {
+      makeRequest();
+    }
+  },[stripeToken, cart.total, navigate])
+
   return (
     <Container>
       <Announcement/>
@@ -79,7 +101,17 @@ const Cart = () => {
                   $ {cart.total + shippingPrice - shippingDiscount}
                 </SummaryItemPrice>
               </SummaryItem>
-              <Button>CHECKOUT NOW</Button>
+              <StripeCheckout
+                name="Point Shop"
+                billingAddress
+                shippingAddress
+                description={`Your total is $${cart.total}`}
+                amount={cart.total*100}
+                stripeKey={KEY}
+                token={onToken}
+              >
+                <Button>CHECKOUT NOW</Button>
+              </StripeCheckout>
             </Summary>
           </Bottom>
         </Wrapper>

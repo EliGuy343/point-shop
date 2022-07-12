@@ -1,4 +1,5 @@
-const stripe = require('stripe')(process.env.PAY_SECRET);
+const KEY = process.env.STRIPE_KEY
+const stripe = require("stripe")(KEY);
 
 const payment = (req, res) => {
   stripe.charges.create({
@@ -7,6 +8,7 @@ const payment = (req, res) => {
     currency: 'usd',
   }, (stripeErr, stripeRes) => {
     if(stripeErr) {
+      console.log(stripeErr);
       return res.status(500).json(stripeErr);
     }
     res.status(200).json(stripeRes);
