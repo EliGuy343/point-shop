@@ -4,6 +4,7 @@ import FlareIcon from '@mui/icons-material/Flare';
 import { Badge } from '@mui/material';
 import { mobile } from '../responsive';
 import { useSelector } from 'react-redux';
+import {Link} from 'react-router-dom';
 
 const Navbar = () => {
   const quantity = useSelector(state=>state.cart.quantity);
@@ -36,19 +37,21 @@ const Navbar = () => {
         <Right>
           <MenuItem>REGISTER</MenuItem>
           <MenuItem>LOGIN</MenuItem>
-          <MenuItem>
-          <Badge 
-            badgeContent={quantity}  
-            sx={{
-              "& .MuiBadge-badge": {
-              color: "white",
-              backgroundColor: "#ff4258"
-              }
-            }}
-          >
-            <ShoppingCartCheckoutOutlined/>
-          </Badge>
-          </MenuItem>
+          <Link to='/cart' style={{color: 'inherit', textDecoration: 'none' }}>
+            <MenuItem>
+            <Badge
+              badgeContent={quantity}  
+              sx={{
+                "& .MuiBadge-badge": {
+                color: "white",
+                backgroundColor: "#ff4258"
+                }
+              }}
+            >
+              <ShoppingCartCheckoutOutlined/>
+            </Badge>
+            </MenuItem>
+          </Link>
         </Right>
       </Wrapper>
     </Container>

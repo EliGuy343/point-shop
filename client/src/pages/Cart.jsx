@@ -1,4 +1,5 @@
 import { Add, Remove } from '@mui/icons-material';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Announcement from '../Components/Announcement';
 import Footer from '../Components/Footer';
@@ -6,6 +7,9 @@ import Navbar from '../Components/Navbar';
 import { mobile } from '../responsive';
 
 const Cart = () => {
+  const cart = useSelector(state=>state.cart);
+  let shippingPrice = 5.99;
+  let shippingDiscount = 3.99; 
   return (
     <Container>
       <Announcement/>
@@ -24,77 +28,56 @@ const Cart = () => {
           </Top>
           <Bottom>
             <Info>
-              <Product>
-                <PrdouctDetail>
-                  {/*I'll remove this long ass link later*/}
-                  <Image src='https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A'/>
-                  <Details>
-                    <ProductName>
-                      <b>Product:</b> JESSIE THUNDER SHOES
-                    </ProductName>
-                    <ProductID>
-                      <b>ID:</b> 9327071023701
-                    </ProductID>
-                    <ProductColor color='black'/>
-                    <ProductSize>
-                      <b>Size:</b> 37.5
-                    </ProductSize>
-                  </Details>
-                </PrdouctDetail>
-                <PriceDetail>
-                  <ProdcutAmountContainer>
-                     <Add/>
-                     <ProductAmount>2</ProductAmount>
-                     <Remove/>
-                     <ProductPrice>$ 30</ProductPrice>
-                  </ProdcutAmountContainer>
-                </PriceDetail>
-              </Product>
+                {cart.products.map(product=>(
+                  <Product>
+                    <PrdouctDetail>
+                      <Image src={product.img}/>
+                      <Details>
+                        <ProductName>
+                          <b>Product:</b> {product.title}
+                        </ProductName>
+                        <ProductID>
+                          <b>ID:</b> {product._id}
+                        </ProductID>
+                        <ProductColor color={product.color.toLowerCase()}/>
+                        <ProductSize>
+                          <b>Size:</b> {product.size}
+                        </ProductSize>
+                      </Details>
+                    </PrdouctDetail>
+                    <PriceDetail>
+                      <ProdcutAmountContainer>
+                        <Add/>
+                          <ProductAmount>{product.quantity}</ProductAmount>
+                        <Remove/>
+                          <ProductPrice>
+                            $ {product.price*product.quantity}
+                          </ProductPrice>
+                      </ProdcutAmountContainer>
+                    </PriceDetail>
+                  </Product>
+              ))}
               <Hr/>
-              <Product>
-                <PrdouctDetail>
-                  {/*I'll remove this long ass link later*/}
-                  <Image src='https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A'/>
-                  <Details>
-                    <ProductName>
-                      <b>Product:</b> JESSIE THUNDER SHOES
-                    </ProductName>
-                    <ProductID>
-                      <b>ID:</b> 9327071023701
-                    </ProductID>
-                    <ProductColor color='black'/>
-                    <ProductSize>
-                      <b>Size:</b> 37.5
-                    </ProductSize>
-                  </Details>
-                </PrdouctDetail>
-                <PriceDetail>
-                  <ProdcutAmountContainer>
-                     <Add/>
-                     <ProductAmount>2</ProductAmount>
-                     <Remove/>
-                     <ProductPrice>$ 30</ProductPrice>
-                  </ProdcutAmountContainer>
-                </PriceDetail>
-              </Product>
             </Info>
             <Summary>
               <SummaryTitle>ORDER SUMMARY</SummaryTitle>
               <SummaryItem>
                 <SummaryItemText>subtotal</SummaryItemText>
-                <SummaryItemPrice>$ 120</SummaryItemPrice>
+                <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
               </SummaryItem>
               <SummaryItem>
                 <SummaryItemText>Esitmated Shipping</SummaryItemText>
-                <SummaryItemPrice>$ 5.9</SummaryItemPrice>
+                <SummaryItemPrice>$ {shippingPrice}</SummaryItemPrice>
               </SummaryItem>
               <SummaryItem>
                 <SummaryItemText>Shipping Discount</SummaryItemText>
-                <SummaryItemPrice>$ -3.99</SummaryItemPrice>
+                <SummaryItemPrice>$ {shippingDiscount}</SummaryItemPrice>
               </SummaryItem>
               <SummaryItem type='total'>
                 <SummaryItemText>Total</SummaryItemText>
-                <SummaryItemPrice>$ 122.9</SummaryItemPrice>
+                <SummaryItemPrice>
+                  $ {cart.total + shippingPrice - shippingDiscount}
+                </SummaryItemPrice>
               </SummaryItem>
               <Button>CHECKOUT NOW</Button>
             </Summary>
