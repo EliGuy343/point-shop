@@ -35,8 +35,12 @@ const Navbar = () => {
           </Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>LOGIN</MenuItem>
+          <Link to='/register' style={{color: 'inherit', textDecoration: 'none' }}>
+            <MenuItem>REGISTER</MenuItem>
+          </Link>
+          <Link to='/login' style={{color: 'inherit', textDecoration: 'none' }}>
+            <MenuItem>LOGIN</MenuItem>
+          </Link>
           <Link to='/cart' style={{color: 'inherit', textDecoration: 'none' }}>
             <MenuItem>
             <Badge

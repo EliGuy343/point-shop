@@ -6,9 +6,7 @@ import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
 import { mobile } from '../responsive';
 import StripeCheckout from 'react-stripe-checkout';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const KEY = "pk_test_51LJSzHEBK4WzIPujyfk92nossR8Kvkf4CeZvyb9lD5WTnBrCGLhJqumQpRvONVUx0kXqJv9ZMyDz6THQKSW9kAuU00abCtUyBG";

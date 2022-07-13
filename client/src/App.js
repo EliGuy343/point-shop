@@ -12,6 +12,7 @@ import {
 import Success from './pages/Success';
 
 function App() {
+  const user = false;
   return (
     <div className="App">
       <Router>
