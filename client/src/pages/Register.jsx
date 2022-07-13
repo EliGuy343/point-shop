@@ -1,24 +1,67 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { registerBackground } from '../data';
+import { register } from '../redux/apiCalls';
 import { mobile } from '../responsive';
 
 const Register = () => {
+  const [user, setUser] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {isFetching, error, currentUser} = useSelector((state) => state.user);
+  const handleChange = (e) => {
+    setUser({...user, [e.target.name]:e.target.value});
+    console.log(user);
+  }
+  const handleRegister = (e) => {
+    e.preventDefault();
+    register(dispatch, user);
+  };
+
+  useEffect(()=>{
+    if(currentUser) {
+      navigate('../');
+    }
+  }, [currentUser]);
+  
+
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder='name'/>
-          <Input placeholder='last name'/>
-          <Input placeholder='username'/>
-          <Input placeholder='email'/>
-          <Input placeholder='password'/>
-          <Input placeholder='confirm password'/>
+          <Input
+            placeholder='name'
+            name='name'
+            onChange={handleChange}
+          />
+          <Input
+            placeholder='last name'
+            name='lastname' 
+            onChange={handleChange}
+          />
+          <Input
+            placeholder='username'
+            name='username' 
+            onChange={handleChange}
+          />
+          <Input
+            placeholder='email'
+            name='email'
+            onChange={handleChange}
+          />
+          <Input
+            placeholder='password'
+            name='password'
+            onChange={handleChange}
+          />
           <Agreement>
             By creating an account, I consent to the processing of my personal 
             data in accordance wtih the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE ACCOUNT</Button>
+          <Button onClick={handleRegister}>CREATE ACCOUNT</Button>
         </Form>
       </Wrapper>
     </Container>

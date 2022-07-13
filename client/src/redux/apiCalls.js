@@ -11,3 +11,15 @@ export const login = async (dispatch, user) => {
     dispatch(loginFailure());
   }
 }
+
+export const register = async (dispatch, user) => {
+  dispatch(loginStart);
+  try {
+    const res = await axios.post('/api/auth/register', user);
+    dispatch(loginSuccess(res.data));
+  } 
+  catch (err) {
+    console.log(err);
+    dispatch(loginFailure());
+  }
+}
