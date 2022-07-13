@@ -5,9 +5,11 @@ import { Badge } from '@mui/material';
 import { mobile } from '../responsive';
 import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
+import { useState } from 'react';
 
 const Navbar = () => {
   const quantity = useSelector(state=>state.cart.quantity);
+  const [search, setSearch] = useState('');
   return (
     <Container>
       <Wrapper>
@@ -16,13 +18,20 @@ const Navbar = () => {
             EN
           </Language>
           <SearchContainer>
-            <Input/>
-            <Search 
-              style={{
-                color:"black",
-                fontSize: 16,
-                }}
+            <Input
+              onChange={(e)=>setSearch(e.target.value)}
             />
+            <Link
+             to={`../products/${search}`}
+            >
+              <Search 
+                style={{
+                  marginTop:'5px',
+                  color:"black",
+                  fontSize: 16,
+                  }}
+              />
+            </Link>
           </SearchContainer>
         </Left>
         <Center>
