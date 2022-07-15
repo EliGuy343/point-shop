@@ -1,6 +1,7 @@
 const Cart = require('../models/Cart');
 
 const createCart = async (req, res) => {
+  await Cart.findOneAndDelete({userId: req.params.id});
   const newCart = new Cart({userId:req.user.id, ...req.body});
   try {
     const savedCart = await newCart.save();

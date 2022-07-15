@@ -3,13 +3,21 @@ import {Search, ShoppingCartCheckoutOutlined} from '@mui/icons-material';
 import FlareIcon from '@mui/icons-material/Flare';
 import { Badge } from '@mui/material';
 import { mobile } from '../responsive';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import { useState } from 'react';
-
+import {clearCart} from '../redux/cartRedux';
+import {logout} from '../redux/userRedux';
 const Navbar = () => {
   const quantity = useSelector(state=>state.cart.quantity);
+  const {currentUser} = useSelector(state=> state.user);
   const [search, setSearch] = useState('');
+  const dispatch = useDispatch();
+  const handleLogout = ()=> {
+    console.log(`test`);
+    dispatch(clearCart());
+    dispatch(logout());
+  }
   return (
     <Container>
       <Wrapper>
@@ -44,12 +52,31 @@ const Navbar = () => {
           </Logo>
         </Center>
         <Right>
-          <Link to='/register' style={{color: 'inherit', textDecoration: 'none' }}>
-            <MenuItem>REGISTER</MenuItem>
-          </Link>
-          <Link to='/login' style={{color: 'inherit', textDecoration: 'none' }}>
-            <MenuItem>LOGIN</MenuItem>
-          </Link>
+          {!currentUser &&
+            <>
+              <Link 
+                to='/register'
+                style={{color: 'inherit',textDecoration: 'none'}}
+              >
+                <MenuItem>
+                  REGISTER
+                </MenuItem>
+              </Link>
+              <Link
+                to='/login'
+                style={{color: 'inherit', textDecoration: 'none' }}
+              >
+                <MenuItem>
+                  LOGIN
+                </MenuItem>
+              </Link>
+            </>
+          }
+          {currentUser &&
+            <MenuItem onClick={handleLogout}>
+              LOGOUT
+            </MenuItem>
+          }
           <Link to='/cart' style={{color: 'inherit', textDecoration: 'none' }}>
             <MenuItem>
             <Badge
