@@ -27,11 +27,19 @@ const Products = ({category, filters, sort}) => {
   }, [category]);
 
   useEffect(() =>{
-    setFilteredProducts(
-      products.filter(item => 
-        Object.entries(filters).every(([key,value]) =>
-          item[key].includes(value))
-    ));
+    console.log(filters);
+    if(category) {
+      if(filters.color === undefined && filters.size === undefined) {
+        setFilteredProducts(products);
+      }
+      else {
+        setFilteredProducts(
+          products.filter(item => 
+            Object.entries(filters).every(([key,value]) =>
+              item[key].includes(value))
+        ));
+      }
+    }
   // eslint-disable-next-line
   }, [filters]);
 
