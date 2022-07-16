@@ -1,13 +1,14 @@
 const Cart = require('../models/Cart');
 
 const createCart = async (req, res) => {
-  await Cart.findOneAndDelete({userId: req.params.id});
+  await Cart.findOneAndDelete({userId: req.user.id});
   const newCart = new Cart({userId:req.user.id, ...req.body});
   try {
     const savedCart = await newCart.save();
     res.status(200).json(savedCart);
   } 
   catch(err) {
+    console.log(err);
     res.status(500).json(err);
   }
 }

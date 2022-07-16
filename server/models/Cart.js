@@ -6,6 +6,14 @@ const CartSchema = new mongoose.Schema(
       required: true,
       unique: true
     },
+    quantity:{
+      type: Number,
+      required: true
+    },
+    total: {
+      type: Number,
+      required: true
+    },
     Products: [
       {
         productId: {
@@ -15,6 +23,9 @@ const CartSchema = new mongoose.Schema(
           type: Number,
           default: 1
         },
+        price: {
+            type: Number
+          }
       }
     ]
   }, {timestamps: true}

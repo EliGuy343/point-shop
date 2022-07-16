@@ -4,6 +4,8 @@ import Product from './pages/Product';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   BrowserRouter as Router, 
   Route, 
@@ -12,7 +14,6 @@ import {
 import Success from './pages/Success';
 
 function App() {
-  const user = false;
   return (
     <div className="App">
       <Router>
@@ -27,6 +28,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
         </Routes>
       </Router>
+      <ToastContainer/>
     </div>
   );
 }
