@@ -1,5 +1,5 @@
 import { Add, Remove} from '@mui/icons-material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Announcement from '../Components/Announcement';
 import Footer from '../Components/Footer';
@@ -8,7 +8,8 @@ import { mobile } from '../responsive';
 import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { saveCart } from '../redux/apiCalls';
+import { getCart, saveCart } from '../redux/apiCalls';
+import { clearCart } from '../redux/cartRedux';
 
 const KEY = "pk_test_51LJSzHEBK4WzIPujyfk92nossR8Kvkf4CeZvyb9lD5WTnBrCGLhJqumQpRvONVUx0kXqJv9ZMyDz6THQKSW9kAuU00abCtUyBG";
 
@@ -16,12 +17,13 @@ const Cart = () => {
   const cart = useSelector(state=>state.cart);
   const currentUser = useSelector(state=>state.user.currentUser);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   let shippingPrice = 5.20;
   let shippingDiscount = 3.20;
   const [stripeToken, setStripeToken] = useState(null); 
   const onToken = (token) => {
     setStripeToken(token);
-  }
+  };
 
   useEffect(()=>{
     const makeRequest = async ()=>{
@@ -30,12 +32,11 @@ const Cart = () => {
     if(stripeToken) {
       makeRequest();
     }
-  },[stripeToken, cart.total, navigate])
-  
-  const handleSave = ()=> {
-    saveCart(currentUser.accessToken, cart);
-  }
-  
+  },[stripeToken, cart.total, navigate]);
+
+  const handleClear = ()=> {
+    dispatch(clearCart());
+  };
   return (
     <Container>
       <Announcement/>
@@ -47,8 +48,7 @@ const Cart = () => {
           <Top>
             {currentUser && 
               <>
-                <TopButton>LOAD CART</TopButton>
-                <CheckoutButton onClick={handleSave}>SAVE CART</CheckoutButton>
+                <TopButton onClick={handleClear}>CLEAR CART</TopButton>
               </>
             }
             {!currentUser && 
@@ -154,27 +154,28 @@ const Top = styled.div`
   ${mobile({width:'90%'})}
   padding: 20px;
 `;
-const CheckoutButton = styled.button`
-  padding: 10px;
-  font-weight: 600;
-  border:none;
-  background-color: black;
-  color: white;
-  border-radius: 5px;
-  box-shadow: 0 3px 3px -2px rgba(0,0,0,0.6);
-  ${mobile({marginLeft:'25px'})}
-  cursor:pointer;
-  &:active {
-    box-shadow: 0 1px 1px -2px rgba(0,0,0,0.6);
-    transform: translateY(2px);
-  }
+// const CheckoutButton = styled.button`
+//   padding: 10px;
+//   font-weight: 600;
+//   border:none;
+//   background-color: black;
+//   color: white;
+//   border-radius: 5px;
+//   box-shadow: 0 3px 3px -2px rgba(0,0,0,0.6);
+//   ${mobile({marginLeft:'25px'})}
+//   cursor:pointer;
+//   &:active {
+//     box-shadow: 0 1px 1px -2px rgba(0,0,0,0.6);
+//     transform: translateY(2px);
+//   }
 
-`;
+// `;
 const TopButton = styled.button`
   padding: 10px;
   font-weight: 600;
+  margin-left: 25px;
   border: none;
-  background-color: #0394fc;
+  background-color: black;
   color: white;
   border-radius: 5px;
   box-shadow: 0 3px 3px -2px rgba(0,0,0,0.6);

@@ -21,7 +21,7 @@ const cartSlice = createSlice({
     loadCart:(state, action) => {
       state.products = action.payload.products;
       state.quantity = action.payload.quantity;
-      state.total = action.payload.toal;
+      state.total = action.payload.total;
       
     }
 

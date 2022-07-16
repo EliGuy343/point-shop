@@ -2,7 +2,14 @@ const Cart = require('../models/Cart');
 
 const createCart = async (req, res) => {
   await Cart.findOneAndDelete({userId: req.user.id});
-  const newCart = new Cart({userId:req.user.id, ...req.body});
+  console.log(req.user);
+  const newCart = new Cart({
+    userId: req.user.id,
+    quantity: req.body.quantity,
+    total: req.body.total,
+    products:req.body.products
+  });
+  console.log(newCart);
   try {
     const savedCart = await newCart.save();
     res.status(200).json(savedCart);
@@ -39,8 +46,9 @@ const deleteCart = async (req, res) => {
 
 const getCart = async (req, res) => {
   try {
-    const cart = await Cart.findOne({userId: req.params.id});
-    res.status(200).json(cart); 
+    const cart = await Cart.findOne({userId: req.user.id});
+    console.log(cart);
+    res.status(200).send(cart); 
   } 
   catch (err) {
     res.status(500).json(err);

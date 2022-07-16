@@ -66,7 +66,20 @@ export const getCart = async (dispatch, token) => {
   };
   try {
     const res = await axios.get('/api/cart', config);
-    dispatch(loadCart(res.data));
+    if(res.data){
+      dispatch(loadCart(res.data));
+    }
+    else {
+      toast.error('Sorry, it seems you don\'t have a cart saved', {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+    }
   }
   catch(err) {
     console.log(err);

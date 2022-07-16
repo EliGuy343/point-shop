@@ -15,6 +15,6 @@ const {
 router.post('/', verifyToken, createCart);
 router.put('/:id', verifyTokenAndAutorization, editCart);
 router.delete('/:id', verifyTokenAndAutorization, deleteCart);
-router.get('/:id', verifyTokenAndAutorization, getCart);
+router.get('/', verifyToken, getCart);
 router.get('/:id', verifyTokenAndAdmin, getAllCarts);
 module.exports = router;
