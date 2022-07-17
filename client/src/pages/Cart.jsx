@@ -8,7 +8,6 @@ import { mobile } from '../responsive';
 import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getCart, saveCart } from '../redux/apiCalls';
 import { clearCart } from '../redux/cartRedux';
 
 const KEY = "pk_test_51LJSzHEBK4WzIPujyfk92nossR8Kvkf4CeZvyb9lD5WTnBrCGLhJqumQpRvONVUx0kXqJv9ZMyDz6THQKSW9kAuU00abCtUyBG";

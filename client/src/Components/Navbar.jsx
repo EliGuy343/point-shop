@@ -14,7 +14,6 @@ const Navbar = () => {
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
   const handleLogout = ()=> {
-    console.log(`test`);
     dispatch(clearCart());
     dispatch(logout());
   }

@@ -30,9 +30,6 @@ const Products = ({category,setFilters,filters, sort}) => {
   }, [category]);
 
   useEffect(() =>{
-    console.log(filters);
-    console.log(filters.color);
-    console.log(filters.size);
     if(category) {
       if(filters.color === undefined && filters.size === undefined) {
         setFilteredProducts(products);
