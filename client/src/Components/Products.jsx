@@ -3,10 +3,13 @@ import styled from 'styled-components';
 import Product from './Product';
 import axios from 'axios';
 
-const Products = ({category, filters, sort}) => {
+const Products = ({category,setFilters,filters, sort}) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   useEffect(()=>{
+    setFilters({});
+    setFilteredProducts([]);
+    setProducts([]);
     const getProducts = async () => {
       try {
         let res;
@@ -28,6 +31,8 @@ const Products = ({category, filters, sort}) => {
 
   useEffect(() =>{
     console.log(filters);
+    console.log(filters.color);
+    console.log(filters.size);
     if(category) {
       if(filters.color === undefined && filters.size === undefined) {
         setFilteredProducts(products);
@@ -63,8 +68,8 @@ const Products = ({category, filters, sort}) => {
         ? filteredProducts.map(product=>
             <Product product={product} key={product.id}/>
           ) 
-        : !category && products.slice(0,8).map(product=>
-          <Product product={product} key={product.id}/>
+        : (!filters.size && !filters.color) && products.slice(0,8).map(product=>
+            <Product product={product} key={product.id}/>
         )}
     </Container>
   );

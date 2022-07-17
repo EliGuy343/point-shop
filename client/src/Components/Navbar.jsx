@@ -43,13 +43,15 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>
+        <Link to='/' style={{color: 'inherit', textDecoration: 'none' }}>
+        <Logo>
             Point Shop
             <FlareIcon sx={{
               color:'yellow',
               fontSize:'12px',
             }}/>
           </Logo>
+        </Link>
         </Center>
         <Right>
           {!currentUser &&

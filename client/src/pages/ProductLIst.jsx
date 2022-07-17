@@ -58,7 +58,12 @@ const ProductList = () => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Products category={category} filters={filters} sort={sort}/>
+      <Products
+        category={category}
+        filters={filters}
+        setFilters={setFilters}
+        sort={sort}
+      />
       <Newsletter/>
       <Footer/>
     </Container>
